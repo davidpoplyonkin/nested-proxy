@@ -1,0 +1,15 @@
+services:
+  master-nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./certs:/etc/nginx/certs:ro
+    networks:
+      - master-nginx-network
+
+networks:
+  master-nginx-network:
+    external: true
